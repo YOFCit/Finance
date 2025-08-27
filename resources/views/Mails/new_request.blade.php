@@ -1,8 +1,3 @@
-@php
-$empleado = \App\Models\Usuarios::find($requestData->requestor);
-@endphp
-
-
 @component('mail::message')
 # Pending Approval Request
 

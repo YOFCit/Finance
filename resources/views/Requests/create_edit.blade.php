@@ -90,16 +90,34 @@
                 </select>
               </div>
             </div>
+
             <!-- Payment Due Date -->
             <div class="col-md-6">
               <label for="payment_due_date" class="form-label">Payment Due Date</label>
               <input type="date" class="form-control" id="payment_due_date" name="payment_due_date" required />
+              <div id="date-error" style="color:red; display:none; margin-top:5px;">La fecha no puede ser anterior a hoy.</div>
             </div>
 
             <script>
-              // Obtener la fecha de hoy en formato YYYY-MM-DD
+              const paymentInput = document.getElementById('payment_due_date');
               const today = new Date().toISOString().split('T')[0];
-              document.getElementById('payment_due_date').setAttribute('min', today);
+              paymentInput.setAttribute('min', today);
+
+              const form = paymentInput.closest('form');
+
+              form.addEventListener('submit', function(e) {
+                const selectedDate = new Date(paymentInput.value);
+                const currentDate = new Date();
+                currentDate.setHours(0, 0, 0, 0);
+
+                if (selectedDate < currentDate) {
+                  e.preventDefault(); // Bloquea el envío
+                  document.getElementById('date-error').style.display = 'block';
+                  paymentInput.focus();
+                } else {
+                  document.getElementById('date-error').style.display = 'none';
+                }
+              });
             </script>
 
             <!-- Justification -->
