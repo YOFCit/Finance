@@ -1,7 +1,11 @@
+@php
+$empleado = \App\Models\Usuarios::where('requestor', $requestData->requestor)->first();
+@endphp
+
 @component('mail::message')
 # Pending Approval Request
 
-**Employee:** {{ $requestData->requestor }} {{ $requestData->name ?? '' }}<br>
+**Employee:** {{ $empleado->name ?? $requestData->requestor }}<br>
 **Department:** {{ $requestData->department }}<br>
 **Amount:** {{ number_format($requestData->amount, 2, '.', ',') }} {{ $requestData->currency }}<br>
 **Justification:** {{ $requestData->justification }}

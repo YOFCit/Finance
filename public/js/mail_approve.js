@@ -47,15 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
     approveForm.action = `/requests/${requestId}/status`;
     rejectForm.action = `/requests/${requestId}/status`;
 
-    if (currentStatus === 'Approve') {
+    if (currentStatus === 'Approve' || currentStatus === 'Reject') {
       approveForm.style.display = 'none';
-      rejectForm.style.display = 'flex';
-    } else if (currentStatus === 'Reject') {
-      approveForm.style.display = 'flex';
       rejectForm.style.display = 'none';
+      modalReason.disabled = true;
     } else {
       approveForm.style.display = 'flex';
       rejectForm.style.display = 'flex';
+      modalReason.disabled = false;
     }
   });
 
