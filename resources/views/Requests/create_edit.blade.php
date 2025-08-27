@@ -102,15 +102,17 @@
               const paymentInput = document.getElementById('payment_due_date');
               const today = new Date().toISOString().split('T')[0];
               paymentInput.setAttribute('min', today);
-
+            
               const form = paymentInput.closest('form');
-
+            
               form.addEventListener('submit', function(e) {
-                const selectedDate = new Date(paymentInput.value);
-                const currentDate = new Date();
-                currentDate.setHours(0, 0, 0, 0);
-
-                if (selectedDate < currentDate) {
+                if (!paymentInput.value) return; // si está vacío, no validar
+            
+                // Tomamos la fecha seleccionada tal cual del input (AAAA-MM-DD)
+                const selectedDateStr = paymentInput.value;
+                const todayStr = new Date().toISOString().split('T')[0];
+            
+                if (selectedDateStr < todayStr) {
                   e.preventDefault(); // Bloquea el envío
                   document.getElementById('date-error').style.display = 'block';
                   paymentInput.focus();
@@ -119,6 +121,7 @@
                 }
               });
             </script>
+
 
             <!-- Justification -->
             <div class="col-12">
