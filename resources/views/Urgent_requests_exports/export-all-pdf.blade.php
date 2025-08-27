@@ -27,17 +27,11 @@
         <th>Employee ID</th>
         <td>{{ $req->requestor }}</td>
       </tr>
-
-      <tr>
-        <th>Employee Name</th>
-        <td>{{ $req->employee?->name ?? 'Name not defined' }}</td>
-      </tr>
-
+        
       <tr>
         <th>Employee Name</th>
         <td>{{ \App\Models\Usuarios::where('requestor', $req->requestor)->first()?->name ?? 'Name not defined' }}</td>
       </tr>
-
 
       <tr>
         <th>Submitter Department</th>
