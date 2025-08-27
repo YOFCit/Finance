@@ -26,6 +26,12 @@
         <th>Employee ID</th>
         <td>{{ $request->requestor }}</td>
       </tr>
+
+      <tr>
+        <th>Employee Name</th>
+        <td>{{ \App\Models\Usuarios::where('requestor', $request->requestor)->first()?->name ?? 'Name not defined' }}</td>
+      </tr>
+
       <tr>
         <th>Expense No</th>
         <td>{{ $request->expense_no }}</td>
@@ -89,7 +95,7 @@
       </tr>
 
     </table>
-    
+
 
     <p class="note">
       Note: The Finance Department reserves the right to reject requests that lack sufficient justification or proper authorization.
