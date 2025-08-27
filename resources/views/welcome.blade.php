@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
 
 </head>
+@php
+$approvalPerson = \App\Models\ApprovalPerson::first();
+@endphp
 
 <body class="d-flex flex-column min-vh-100">
   <!-- MESSAGE ALERTS -->
@@ -29,7 +32,7 @@
         <small class="opacity-75 d-block">Urgent Payment Request System</small>
       </div>
 
-      @if(Auth::check())
+      @if(Auth::check() && !Route::is('request.approve'))
       <div class="d-flex flex-row align-items-center gap-2 mt-2 mt-md-0">
         <!-- User Dropdown -->
         <div class="dropdown">
@@ -47,9 +50,6 @@
             </li>
 
             <li>
-              @php
-              $approvalPerson = \App\Models\ApprovalPerson::first();
-              @endphp
               <!-- Dropdown item that triggers the modal -->
               <a href="javascript:void(0);"
                 class="dropdown-item"

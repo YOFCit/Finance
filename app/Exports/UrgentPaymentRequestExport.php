@@ -43,8 +43,8 @@ class UrgentPaymentRequestExport implements FromCollection, WithHeadings, WithMa
       'Cause',
       'Risk',
       'Causing Department',
-      'Revisión',
-      'Reason', // <-- Reason antes de Status
+      'Approved by',
+      'Reason',
       'Status',
     ];
   }
@@ -59,14 +59,20 @@ class UrgentPaymentRequestExport implements FromCollection, WithHeadings, WithMa
       default => '',
     };
 
+    // Nombre del requestor desde el modelo Usuarios
+    $requestorUser = \App\Models\Usuarios::where('requestor', $request->requestor)->first();
+    $requestorName = $requestorUser->name ?? $request->requestor;
+
+    // Nombre del aprobador desde el modelo Usuarios
     $approvedBy = '';
     if ($status === 'Approved' || $status === 'Rejected') {
-      $approvedBy = $this->approver->approved_by ?? '';
+      $approverUser = \App\Models\Usuarios::where('id', $this->approver->user_id ?? 0)->first();
+      $approvedBy = $approverUser->name ?? $this->approver->approved_by ?? '';
     }
 
     return [
       $request->request_date ? date('d/m/Y', strtotime($request->request_date)) : '',
-      $request->requestor,
+      $requestorName,
       $request->expense_no,
       $request->department,
       $request->supplier,
@@ -79,10 +85,11 @@ class UrgentPaymentRequestExport implements FromCollection, WithHeadings, WithMa
       $request->risk,
       $request->causing_department,
       $approvedBy,
-      $request->reason ?? '', // <-- Reason antes de Status
-      $status, // <-- Status al final
+      $request->reason ?? '',
+      $status,
     ];
   }
+
 
   public function columnWidths(): array
   {

@@ -74,11 +74,20 @@
         <td class="description-cell">{{ $request->description ?? 'N/A' }}</td>
       </tr>
       <tr>
-        <th>General Director Zhao Yingbo</th>
+        @php
+        $approver = \App\Models\ApprovalPerson::first();
+        $statusText = match(strtolower($request->status)) {
+        'approve', 'approved' => 'Approved by',
+        'reject', 'rejected' => 'Rejected by',
+        default => 'Reviewed by',
+        };
+        @endphp
+        <th>{{ $statusText.' '.$approver?->approved_by ?? 'Approver not defined' }}</th>
         <td class="status {{ strtolower(str_replace(' ', '-', $request->status)) }}">
           {{ strtoupper($request->status) }}
         </td>
       </tr>
+
     </table>
 
     <p class="note">

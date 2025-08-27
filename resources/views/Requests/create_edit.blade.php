@@ -95,7 +95,7 @@
             <div class="col-md-6">
               <label for="payment_due_date" class="form-label">Payment Due Date</label>
               <input type="date" class="form-control" id="payment_due_date" name="payment_due_date" required />
-              <div id="date-error" style="color:red; display:none; margin-top:5px;">La fecha no puede ser anterior a hoy.</div>
+              <div id="date-error" style="color:red; display:none; margin-top:5px;">The date cannot be today or earlier than today</div>
             </div>
 
             <script>

@@ -10,9 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const button = event.relatedTarget;
     const requestId = button.getAttribute('data-action');
 
+    // Todos los atributos del botón con fallback si no existen
     const expenseNo = button.getAttribute('data-expense-no') || '-';
     const requestDate = button.getAttribute('data-request-date') || '-';
     const requestor = button.getAttribute('data-requestor') || '-';
+    const requestorName = button.getAttribute('data-requestor-name') || '-';
     const department = button.getAttribute('data-department') || '-';
     const causingDepartment = button.getAttribute('data-causing-department') || '-';
     const supplier = button.getAttribute('data-supplier') || '-';
@@ -26,9 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentStatus = button.getAttribute('data-current-status') || 'In Review';
     const reason = button.getAttribute('data-reason') || '';
 
+    // Asignar valores a elementos del modal
     approveModal.querySelector('#modalExpenseNo').textContent = expenseNo;
     approveModal.querySelector('#modalRequestDate').textContent = requestDate;
     approveModal.querySelector('#modalRequestor').textContent = requestor;
+    approveModal.querySelector('#modalRequestorname').textContent = requestorName;
     approveModal.querySelector('#modalDepartment').textContent = department;
     approveModal.querySelector('#modalCausingDepartment').textContent = causingDepartment;
     approveModal.querySelector('#modalSupplier').textContent = supplier;
@@ -44,9 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
     approveModal.querySelector('#modalDescription').textContent = description;
     modalReason.value = reason;
 
+    // Asignar acción de los formularios
     approveForm.action = `/requests/${requestId}/status`;
     rejectForm.action = `/requests/${requestId}/status`;
 
+    // Mostrar/ocultar formularios según el estado
     if (currentStatus === 'Approve' || currentStatus === 'Reject') {
       approveForm.style.display = 'none';
       rejectForm.style.display = 'none';
@@ -58,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Pasar razón al enviar cada formulario
   approveForm.addEventListener('submit', () => {
     approveReason.value = modalReason.value;
   });

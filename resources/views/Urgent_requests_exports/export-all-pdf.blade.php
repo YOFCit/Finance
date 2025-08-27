@@ -75,13 +75,20 @@
         <td class="description-cell">{{ $req->description ?? 'N/A' }}</td>
       </tr>
       <tr>
-        <th>General Director Zhao Yingbo</th>
+        @php
+        $approver = \App\Models\ApprovalPerson::first();
+        $statusText = match(strtolower($req->status)) {
+        'approve', 'approved' => 'Approved by',
+        'reject', 'rejected' => 'Rejected by',
+        default => 'Reviewed by',
+        };
+        @endphp
+        <th>{{ $statusText.' '.$approver?->approved_by ?? 'Approver not defined' }}</th>
         <td class="status {{ strtolower(str_replace(' ', '-', $req->status)) }}">
           {{ strtoupper($req->status) }}
         </td>
       </tr>
     </table>
-
     <p class="note">
       Note: The Finance Department reserves the right to reject requests that lack sufficient justification or proper authorization.
     </p>
