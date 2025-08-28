@@ -91,7 +91,7 @@ class UrgentPaymentRequestController extends Controller
     }
 
     $requests = $query->latest()
-      ->paginate(6)
+      ->paginate(10)
       ->appends($request->all());
 
     return view('Components.Tables.table', [

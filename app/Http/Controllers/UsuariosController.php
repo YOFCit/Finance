@@ -25,7 +25,7 @@ class UsuariosController extends Controller
   /** List users with pagination */
   public function index()
   {
-    $usuarios = Usuarios::paginate(5);
+    $usuarios = Usuarios::paginate(10);
     return view('Employees.index', compact('usuarios'));
   }
 

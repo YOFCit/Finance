@@ -23,7 +23,7 @@
     <table class="table table-bordered table-hover align-middle bg-white">
       <thead class="table-dark">
         <tr>
-          <th>EmployeeID</th>
+          <th style="position: sticky; left: 0; background-color: #212529; z-index: 2;"> EmployeeID</th>
           <th>Name</th>
           <th>Email</th>
           <th>Department</th>
@@ -33,7 +33,7 @@
       <tbody>
         @foreach ($usuarios as $usuario)
         <tr>
-          <td>{{ $usuario->requestor }}</td>
+          <td style="position: sticky; left: 0; background-color: #fff; z-index: 1;">{{ $usuario->requestor }}</td>
           <td>{{ $usuario->name }}</td>
           <td>{{ $usuario->email }}</td>
           <td>{{ $usuario->department }}</td>

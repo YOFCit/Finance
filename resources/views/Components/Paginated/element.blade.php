@@ -1,7 +1,7 @@
 @if($requests->hasPages())
-<div class="d-flex justify-content-center mt-4">
+<div class="d-flex justify-content-center mt-3 mb-4">
   <nav>
-    <ul class="pagination pagination-sm mb-0 shadow-sm rounded">
+    <ul class="pagination pagination-sm mb-0 shadow-sm rounded flex-wrap">
       {{-- Primera página --}}
       <li class="page-item {{ $requests->onFirstPage() ? 'disabled' : '' }}">
         <a class="page-link" href="{{ $requests->url(1) }}" aria-label="First">««</a>
@@ -12,7 +12,7 @@
         <a class="page-link" href="{{ $requests->previousPageUrl() }}" aria-label="Previous">«</a>
       </li>
 
-      {{-- Páginas dinámicas (mostrar 5 alrededor de la actual) --}}
+      {{-- Páginas dinámicas --}}
       @php
       $start = max($requests->currentPage() - 2, 1);
       $end = min($requests->currentPage() + 2, $requests->lastPage());
