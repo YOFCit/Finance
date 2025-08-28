@@ -65,10 +65,6 @@
         <td>{{ $request->cause ?? 'N/A' }}</td>
       </tr>
       <tr>
-        <th>Reason</th>
-        <td>{{ $request->reason ?? 'N/A' }}</td>
-      </tr>
-      <tr>
         <th>Risk</th>
         <td>{{ $request->risk ?? 'N/A' }}</td>
       </tr>
@@ -78,6 +74,10 @@
           <small>(clearly explain the reason and attach evidence if applicable)</small>
         </th>
         <td class="description-cell">{{ $request->description ?? 'N/A' }}</td>
+      </tr>
+      <tr>
+        <th>Reason</th>
+        <td>{{ $request->reason ?? 'N/A' }}</td>
       </tr>
       <tr>
         @php
