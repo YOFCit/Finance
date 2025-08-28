@@ -89,14 +89,20 @@
         };
         @endphp
         <th>{{ $statusText.' '.$approver?->approved_by ?? 'Approver not defined' }}</th>
-        <td class="status {{ strtolower(str_replace(' ', '-', $request->status)) }}">
-          {{ strtoupper($request->status) }}
+        @php
+        $statusMap = [
+            'Approve'   => 'Approved',
+            'Reject'    => 'Rejected',
+            'In Review' => 'In Review',
+        ];
+        $statusText = $statusMap[$request->status] ?? $request->status;
+        @endphp
+    
+        <td class="status {{ strtolower(str_replace(' ', '-', $statusText)) }}">
+          {{ $statusText }}
         </td>
       </tr>
-
     </table>
-
-
     <p class="note">
       Note: The Finance Department reserves the right to reject requests that lack sufficient justification or proper authorization.
     </p>
