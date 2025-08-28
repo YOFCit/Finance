@@ -91,14 +91,13 @@
         <th>{{ $statusText.' '.$approver?->approved_by ?? 'Approver not defined' }}</th>
         @php
         $statusMap = [
-            'Approve'   => 'Approved',
-            'Reject'    => 'Rejected',
-            'In Review' => 'In Review',
+        'Approve' => 'Approved',
+        'Reject' => 'Rejected',
+        'In Review' => 'In Review',
         ];
         $statusText = $statusMap[$request->status] ?? $request->status;
         @endphp
-    
-        <td class="status {{ strtolower(str_replace(' ', '-', $statusText)) }}">
+        <td class="status {{ strtolower(str_replace(' ', '-', $request->status)) }}">
           {{ $statusText }}
         </td>
       </tr>

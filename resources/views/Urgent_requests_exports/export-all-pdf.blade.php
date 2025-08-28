@@ -27,7 +27,7 @@
         <th>Employee ID</th>
         <td>{{ $req->requestor }}</td>
       </tr>
-        
+
       <tr>
         <th>Employee Name</th>
         <td>{{ \App\Models\Usuarios::where('requestor', $req->requestor)->first()?->name ?? 'Name not defined' }}</td>
@@ -88,14 +88,14 @@
         <th>{{ $statusText.' '.$approver?->approved_by ?? 'Approver not defined' }}</th>
         @php
         $statusMap = [
-            'Approve'   => 'Approved',
-            'Reject'    => 'Rejected',
-            'In Review' => 'In Review',
+        'Approve' => 'Approved',
+        'Reject' => 'Rejected',
+        'In Review' => 'In Review',
         ];
         $statusText = $statusMap[$req->status] ?? $req->status;
         @endphp
         <td class="status {{ strtolower(str_replace(' ', '-', $req->status)) }}">
-            {{ $statusText }}
+          {{ $statusText }}
         </td>
       </tr>
     </table>
