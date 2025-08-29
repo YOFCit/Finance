@@ -15,10 +15,6 @@
           </select>
         </div>
         <div class="mb-2">
-          <label class="form-label small">Name</label>
-          <input type="text" name="name" class="form-control form-control-sm" placeholder="Name" value="{{ request('name') }}">
-        </div>
-        <div class="mb-2">
           <label class="form-label small">Employee ID</label>
           <input type="text" name="employee" class="form-control form-control-sm" placeholder="ID" value="{{ request('employee') }}">
         </div>
